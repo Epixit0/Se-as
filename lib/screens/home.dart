@@ -32,6 +32,24 @@ class _HomeState extends State<Home> {
         index: _currentIndex,
         children: <Widget>[
           const Levels(),
+          const Center(
+            child: Text(
+              'Lecciones',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          const Center(
+            child: Text(
+              'Perfil',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          )
         ],
       ),
     );
