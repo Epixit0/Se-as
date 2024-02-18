@@ -3,8 +3,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../screens/firstScreen.dart';
 import '../screens/home.dart';
-import '../screens/login.dart';
 
 class Auth extends StatelessWidget {
   static String routeName = "/auth";
@@ -19,7 +19,7 @@ class Auth extends StatelessWidget {
           if (snapshot.hasData) {
             return const Home();
           } else {
-            return const LoginScreen();
+            return const HomeScreen();
           }
         },
       ),
