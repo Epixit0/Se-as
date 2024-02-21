@@ -191,7 +191,7 @@ class _RegistroScreenState extends State<RegistroScreen> {
                                   password: _contrasena,
                                 );
 
-                                if (newUser?.user != null) {
+                                if (newUser.user != null) {
                                   await _firestore
                                       .collection('users')
                                       .doc(newUser.user!.uid)

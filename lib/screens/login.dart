@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, unnecessary_null_comparison
+
 import 'package:first_app/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/widgets/scaffold_home.dart';
@@ -141,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       try {
                                         final user = await _auth
                                             .signInWithEmailAndPassword(
-                                          email: _correo,
+                                          email: _correo.trim(),
                                           password: _contrasena,
                                         );
 
@@ -149,7 +151,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                           Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => Home(),
+                                              builder: (context) =>
+                                                  const Home(),
                                             ),
                                           );
                                         }

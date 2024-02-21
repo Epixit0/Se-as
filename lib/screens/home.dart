@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:first_app/screens/levels.dart';
+import 'package:first_app/screens/perfin.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -41,15 +42,7 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          const Center(
-            child: Text(
-              'Perfil',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-          )
+          const PerfilPage()
         ],
       ),
     );
