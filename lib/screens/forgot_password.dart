@@ -14,104 +14,150 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final _firestore = FirebaseFirestore.instance;
   String _oldPassword = '';
   String _newPassword = '';
+  String _newPasswordConfirmation = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cambiar Contraseña'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextFormField(
-              onChanged: (value) {
-                _oldPassword = value;
-              },
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Contraseña Antigua',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.lock),
+      backgroundColor: Color.fromARGB(255, 162, 195, 211),
+      body: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.8,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.white),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
-            ),
-            const SizedBox(height: 20),
-            TextFormField(
-              onChanged: (value) {
-                _newPassword = value;
-              },
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Nueva Contraseña',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.lock),
-              ),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () async {
-                await _changePassword();
-              },
-              child: const Text(
+              const Text(
                 'Cambiar Contraseña',
                 style: TextStyle(
-                  fontSize: 16,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              const SizedBox(height: 30),
+              _buildPasswordField(
+                  'Contraseña Antigua', (value) => _oldPassword = value),
+              const SizedBox(height: 20),
+              _buildPasswordField(
+                  'Nueva Contraseña', (value) => _newPassword = value),
+              const SizedBox(height: 20),
+              _buildPasswordField('Confirmar Nueva Contraseña',
+                  (value) => _newPasswordConfirmation = value),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blueGrey),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                onPressed: _changePassword,
+                child: const Text(
+                  'Cambiar Contraseña',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Future<void> _changePassword() async {
-    try {
-      AuthCredential credential = EmailAuthProvider.credential(
-        email: _auth.currentUser!.email!,
-        password: _oldPassword,
-      );
+  Widget _buildPasswordField(String label, Function(String) onChanged) {
+    return TextFormField(
+      onChanged: onChanged,
+      obscureText: true,
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(color: Colors.white),
+        filled: true,
+        fillColor: Colors.white24,
+        border: OutlineInputBorder(),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.white70),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.white),
+        ),
+        prefixIcon: Icon(Icons.lock, color: Colors.white),
+      ),
+    );
+  }
 
-      await _auth.currentUser!.reauthenticateWithCredential(credential);
+  void _changePassword() async {
+    if (_newPassword == _newPasswordConfirmation) {
+      try {
+        AuthCredential credential = EmailAuthProvider.credential(
+          email: _auth.currentUser!.email!,
+          password: _oldPassword,
+        );
 
-      await _auth.currentUser!.updatePassword(_newPassword);
+        await _auth.currentUser!.reauthenticateWithCredential(credential);
 
-      await _updatePasswordInFirestore(_auth.currentUser!.uid, _newPassword);
+        await _auth.currentUser!.updatePassword(_newPassword);
 
+        await _updatePasswordInFirestore(_auth.currentUser!.uid, _newPassword);
+
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Contraseña Cambiada'),
+              content: const Text('La contraseña se ha cambiado exitosamente.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Aceptar'),
+                ),
+              ],
+            );
+          },
+        );
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Error al Cambiar Contraseña'),
+              content: const Text(
+                  'No se pudo cambiar la contraseña. Verifica la contraseña antigua.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Aceptar'),
+                ),
+              ],
+            );
+          },
+        );
+        print(e);
+      }
+    } else {
       showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text('Contraseña Cambiada'),
-            content: const Text('La contraseña se ha cambiado exitosamente.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                },
-                child: const Text('Aceptar'),
-              ),
-            ],
-          );
-        },
-      );
-    } catch (e) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text('Error al Cambiar Contraseña'),
+            title: const Text('Error'),
             content: const Text(
-                'No se pudo cambiar la contraseña. Verifica la contraseña antigua.'),
+                'Las contraseñas nuevas no coinciden. Verifique e intente de nuevo.'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -123,7 +169,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           );
         },
       );
-      print(e);
     }
   }
 
