@@ -101,8 +101,7 @@ class _LevelsState extends State<Levels> {
               MaterialPageRoute(builder: (context) => const FithRoute()));
         }
       },
-      child: Container(
-          child: Column(children: <Widget>[
+      child: Column(children: <Widget>[
         Stack(
           alignment: Alignment.bottomRight,
           children: <Widget>[
@@ -152,7 +151,7 @@ class _LevelsState extends State<Levels> {
           title,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         )
-      ])),
+      ]),
     );
   }
 

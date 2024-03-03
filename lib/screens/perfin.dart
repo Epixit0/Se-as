@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:first_app/screens/firstScreen.dart';
+import 'package:first_app/screens/first_screen.dart';
 import 'package:flutter/services.dart';
 import 'forgot_password.dart';
 
@@ -36,6 +36,7 @@ class _PerfilPageState extends State<PerfilPage> {
 
       setState(() {});
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
@@ -66,17 +67,17 @@ class _PerfilPageState extends State<PerfilPage> {
                     color: Colors.grey.withOpacity(0.3),
                     spreadRadius: 5,
                     blurRadius: 7,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 35,
                     backgroundColor: Colors.white,
-                    child: const Icon(
+                    child: Icon(
                       Icons.account_circle_outlined,
                       size: 70,
                       color: Colors.grey,
@@ -133,7 +134,7 @@ class _PerfilPageState extends State<PerfilPage> {
               icon: const Icon(Icons.exit_to_app, color: Colors.white),
               label: const Text('Cerrar Sesión'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 255, 124, 115),
+                backgroundColor: const Color.fromARGB(255, 255, 124, 115),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),

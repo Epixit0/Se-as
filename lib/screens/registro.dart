@@ -201,11 +201,12 @@ class _RegistroScreenState extends State<RegistroScreen> {
                                     'contrasena': _contrasena,
                                   });
                                   // Navegar a la siguiente pantalla
+                                  // ignore: use_build_context_synchronously
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          Home(), // Asegúrate de importar HomeScreen
+                                          const Home(), // Asegúrate de importar HomeScreen
                                     ),
                                   );
                                 }

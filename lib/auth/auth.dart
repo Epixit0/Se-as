@@ -3,7 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/firstScreen.dart';
+import '../screens/first_screen.dart';
 import '../screens/home.dart';
 
 class Auth extends StatelessWidget {

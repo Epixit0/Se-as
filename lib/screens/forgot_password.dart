@@ -6,10 +6,10 @@ class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({Key? key}) : super(key: key);
 
   @override
-  _ChangePasswordScreenState createState() => _ChangePasswordScreenState();
+  ChangePasswordScreenState createState() => ChangePasswordScreenState();
 }
 
-class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+class ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   String _oldPassword = '';
@@ -19,15 +19,15 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 162, 195, 211),
+      backgroundColor: const Color.fromARGB(255, 162, 195, 211),
       body: Center(
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.8,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.white),
+                icon: const Icon(Icons.arrow_back, color: Colors.white),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -82,17 +82,17 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       obscureText: true,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Colors.white),
+        labelStyle: const TextStyle(color: Colors.white),
         filled: true,
         fillColor: Colors.white24,
-        border: OutlineInputBorder(),
-        enabledBorder: OutlineInputBorder(
+        border: const OutlineInputBorder(),
+        enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white70),
         ),
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
-        prefixIcon: Icon(Icons.lock, color: Colors.white),
+        prefixIcon: const Icon(Icons.lock, color: Colors.white),
       ),
     );
   }
@@ -111,6 +111,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
         await _updatePasswordInFirestore(_auth.currentUser!.uid, _newPassword);
 
+        // ignore: use_build_context_synchronously
         showDialog(
           context: context,
           builder: (context) {
@@ -130,6 +131,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           },
         );
       } catch (e) {
+        // ignore: use_build_context_synchronously
         showDialog(
           context: context,
           builder: (context) {
@@ -148,7 +150,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             );
           },
         );
-        print(e);
       }
     } else {
       showDialog(
@@ -179,13 +180,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         'contrasena': newPassword,
       });
     } catch (e) {
+      // ignore: avoid_print
       print('Error updating password in Firestore: $e');
     }
   }
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: ChangePasswordScreen(),
   ));
 }
