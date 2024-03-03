@@ -64,11 +64,11 @@ class LessonScreenState extends State<LessonScreen> {
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Letra U',
-        'images/U.png',
+        'images/u.png',
         'images/o.png',
         'images/i.png',
         'images/E.png',
-        'images/U.png',
+        'images/u.png',
         checkButton: bottomButton(context, 'SIGUIENTE'),
       ),
       ListLesson(
