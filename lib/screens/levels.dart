@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'package:first_app/lesson_screen/lesson_screen.dart';
 import 'package:first_app/screens/Leccion1.dart';
 import 'package:flutter/material.dart';
 
@@ -82,7 +82,7 @@ class _LevelsState extends State<Levels> {
       onTap: () {
         if (lesson == 1) {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const FirstRoute()));
+              MaterialPageRoute(builder: (context) => const LessonScreen()));
         }
         if (lesson == 2) {
           Navigator.push(context,
