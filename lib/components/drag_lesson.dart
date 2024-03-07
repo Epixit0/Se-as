@@ -1,5 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
-import 'package:first_app/lesson_screen/lesson_screen.dart';
+import 'package:first_app/screens/lesson/lesson_screen.dart';
 import 'package:collection/collection.dart';
 
 //ignore: must_be_immutable
@@ -160,7 +162,7 @@ class DroppableAreaState extends State<DroppableArea> {
           ),
         );
       },
-      onWillAccept: (data) {
+      onWillAcceptWithDetails: (data) {
         // Add any condition if you want to check before accepting the data
         return true;
       },

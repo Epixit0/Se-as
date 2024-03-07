@@ -1,44 +1,27 @@
+import 'package:first_app/screens/home/controller/perfil_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:first_app/screens/first_screen.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'forgot_password.dart';
+import '../log/forgot_password.dart';
 
-class PerfilPage extends StatefulWidget {
-  const PerfilPage({super.key});
+class PerfilScreen extends StatefulWidget {
+  static String routeName = "/perfin";
 
+  const PerfilScreen({super.key});
   @override
-  State<PerfilPage> createState() => _PerfilPageState();
+  State<PerfilScreen> createState() => _PerfilScreenState();
 }
 
-class _PerfilPageState extends State<PerfilPage> {
-  final _auth = FirebaseAuth.instance;
-  final _firestore = FirebaseFirestore.instance;
-  String _nombre = '';
-  String _correo = '';
+class _PerfilScreenState extends State<PerfilScreen> {
+  final PerfilController _con = PerfilController();
 
   @override
   void initState() {
     super.initState();
-    loadUserData();
-  }
 
-  Future<void> loadUserData() async {
-    try {
-      DocumentSnapshot userDoc = await _firestore
-          .collection('users')
-          .doc(_auth.currentUser?.uid)
-          .get();
-
-      _nombre = userDoc['nombre'];
-      _correo = _auth.currentUser?.email ?? '';
-
-      setState(() {});
-    } catch (e) {
-      // ignore: avoid_print
-      print(e);
-    }
+    SchedulerBinding.instance.addPostFrameCallback((timestamp) {
+      _con.init(context, refresh);
+    });
   }
 
   @override
@@ -87,7 +70,7 @@ class _PerfilPageState extends State<PerfilPage> {
                     height: 10,
                   ),
                   Text(
-                    _nombre,
+                    _con.student?.nombre ?? 'Nombre',
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -98,7 +81,7 @@ class _PerfilPageState extends State<PerfilPage> {
                     height: 5,
                   ),
                   Text(
-                    _correo,
+                    _con.student?.correo ?? 'Correo',
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 12,
@@ -113,7 +96,7 @@ class _PerfilPageState extends State<PerfilPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ChangePasswordScreen(),
+                    builder: (context) => const ChangePasswordScreen(),
                   ),
                 );
               },
@@ -129,7 +112,7 @@ class _PerfilPageState extends State<PerfilPage> {
             const SizedBox(height: 20),
             ElevatedButton.icon(
               onPressed: () {
-                signOut();
+                _con.signOut();
               },
               icon: const Icon(Icons.exit_to_app, color: Colors.white),
               label: const Text('Cerrar Sesión'),
@@ -146,13 +129,7 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  void signOut() async {
-    FirebaseAuth.instance.signOut();
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
-      ),
-    );
+  void refresh() {
+    setState(() {});
   }
 }

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:first_app/screens/login.dart';
-import 'package:first_app/screens/registro.dart';
-import 'package:first_app/widgets/button.dart';
-import 'package:first_app/widgets/scaffold_home.dart';
+import 'package:first_app/screens/log/login.dart';
+import 'package:first_app/screens/log/signup.dart';
+import 'package:first_app/components/button.dart';
+import 'package:first_app/components/scaffold_home.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class WelcomeScreen extends StatefulWidget {
+  static String routeName = "/welcome";
+  const WelcomeScreen({super.key});
+  @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
 
+class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldHome(
@@ -53,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                     SizedBox(height: 10),
                     Button(
                       buttonText: 'Registrarse',
-                      onTap: RegistroScreen(),
+                      onTap: SignUpScreen(),
                     )
                   ],
                 ),

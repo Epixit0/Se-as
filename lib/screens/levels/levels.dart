@@ -1,16 +1,16 @@
 import 'dart:math';
-import 'package:first_app/lesson_screen/lesson_screen.dart';
-import 'package:first_app/screens/Leccion1.dart';
+import 'package:first_app/screens/lesson/lesson_screen.dart';
 import 'package:flutter/material.dart';
 
-class Levels extends StatefulWidget {
-  const Levels({super.key});
+class LevelsScreen extends StatefulWidget {
+  static String routeName = "/levels";
 
+  const LevelsScreen({super.key});
   @override
-  State<Levels> createState() => _LevelsState();
+  State<LevelsScreen> createState() => _LevelsScreenState();
 }
 
-class _LevelsState extends State<Levels> {
+class _LevelsScreenState extends State<LevelsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,22 +84,22 @@ class _LevelsState extends State<Levels> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const LessonScreen()));
         }
-        if (lesson == 2) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const SecondRoute()));
-        }
-        if (lesson == 3) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ThirdRoute()));
-        }
-        if (lesson == 4) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const FourthRoute()));
-        }
-        if (lesson == 5) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const FithRoute()));
-        }
+        // if (lesson == 2) {
+        //   Navigator.push(context,
+        //       MaterialPageRoute(builder: (context) => const SecondRoute()));
+        // }
+        // if (lesson == 3) {
+        //   Navigator.push(context,
+        //       MaterialPageRoute(builder: (context) => const ThirdRoute()));
+        // }
+        // if (lesson == 4) {
+        //   Navigator.push(context,
+        //       MaterialPageRoute(builder: (context) => const FourthRoute()));
+        // }
+        // if (lesson == 5) {
+        //   Navigator.push(context,
+        //       MaterialPageRoute(builder: (context) => const FithRoute()));
+        // }
       },
       child: Column(children: <Widget>[
         Stack(

@@ -1,25 +1,30 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously, deprecated_member_use
+
+import 'package:first_app/screens/log/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:first_app/screens/login.dart';
-import 'package:first_app/widgets/scaffold_home.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'home.dart';
+import 'package:first_app/screens/log/login.dart';
+import 'package:first_app/components/scaffold_home.dart';
+import 'package:flutter/scheduler.dart';
+import '../home/home.dart';
 
-class RegistroScreen extends StatefulWidget {
-  const RegistroScreen({Key? key}) : super(key: key);
-
+class SignUpScreen extends StatefulWidget {
+  static String routeName = "/signup";
+  const SignUpScreen({Key? key}) : super(key: key);
   @override
-  State<RegistroScreen> createState() => _RegistroScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _RegistroScreenState extends State<RegistroScreen> {
-  final _formSignupKey = GlobalKey<FormState>();
-  final _auth = FirebaseAuth.instance;
-  final _firestore = FirebaseFirestore.instance;
-  String _nombre = '';
-  String _correo = '';
-  String _contrasena = '';
-  bool _obscureText = true;
+class _SignUpScreenState extends State<SignUpScreen> {
+  final SignUpController _con = SignUpController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((timestamp) {
+      _con.init(context, refresh);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +51,7 @@ class _RegistroScreenState extends State<RegistroScreen> {
               ),
               child: SingleChildScrollView(
                 child: Form(
-                  key: _formSignupKey,
+                  key: _con.formSignupKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -63,7 +68,7 @@ class _RegistroScreenState extends State<RegistroScreen> {
                       ),
                       TextFormField(
                         onChanged: (value) {
-                          _nombre = value;
+                          _con.nombre.text = value;
                         },
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -71,6 +76,7 @@ class _RegistroScreenState extends State<RegistroScreen> {
                           }
                           return null;
                         },
+                        controller: _con.nombre,
                         decoration: InputDecoration(
                           label: const Text('Nombre'),
                           hintText: 'Ingrese nombre completo',
@@ -97,7 +103,7 @@ class _RegistroScreenState extends State<RegistroScreen> {
                       ),
                       TextFormField(
                         onChanged: (value) {
-                          _correo = value;
+                          _con.correo.text = value;
                         },
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -105,6 +111,8 @@ class _RegistroScreenState extends State<RegistroScreen> {
                           }
                           return null;
                         },
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _con.correo,
                         decoration: InputDecoration(
                           label: const Text('Correo'),
                           hintText: 'Ingrese el correo',
@@ -131,9 +139,9 @@ class _RegistroScreenState extends State<RegistroScreen> {
                       ),
                       TextFormField(
                         onChanged: (value) {
-                          _contrasena = value;
+                          _con.contrasena.text = value;
                         },
-                        obscureText: _obscureText,
+                        obscureText: _con.obscureText,
                         obscuringCharacter: '*',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -147,14 +155,12 @@ class _RegistroScreenState extends State<RegistroScreen> {
                           prefixIcon: const Icon(Icons.lock),
                           suffixIcon: IconButton(
                             icon: Icon(
-                              _obscureText
+                              _con.obscureText
                                   ? Icons.visibility
                                   : Icons.visibility_off,
                             ),
                             onPressed: () {
-                              setState(() {
-                                _obscureText = !_obscureText;
-                              });
+                              _con.contrasenavisible();
                             },
                           ),
                           hintStyle: const TextStyle(
@@ -181,38 +187,23 @@ class _RegistroScreenState extends State<RegistroScreen> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () async {
-                            if (_formSignupKey.currentState?.validate() ??
+                            if (_con.formSignupKey.currentState?.validate() ??
                                 false) {
                               try {
-                                final result = await _auth
-                                    .fetchSignInMethodsForEmail(_correo);
+                                final result = await _con.user
+                                    .fetchSignInMethodsForEmail(
+                                        _con.correo.text);
 
                                 if (result.isNotEmpty) {
-                                  _mostrarDialogCorreoExistente();
+                                  _con.mostrarDialogCorreoExistente();
                                 } else {
-                                  final newUser = await _auth
-                                      .createUserWithEmailAndPassword(
-                                    email: _correo,
-                                    password: _contrasena,
+                                  _con.formSignupKey.currentState!.save();
+                                  _con.register().then(
+                                    (value) {
+                                      Navigator.pushNamed(
+                                          context, HomeScreen.routeName);
+                                    },
                                   );
-
-                                  if (newUser.user != null) {
-                                    await _firestore
-                                        .collection('users')
-                                        .doc(newUser.user!.uid)
-                                        .set({
-                                      'nombre': _nombre,
-                                      'correo': _correo,
-                                      'contrasena': _contrasena,
-                                    });
-
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const Home(),
-                                      ),
-                                    );
-                                  }
                                 }
                               } catch (e) {
                                 print(e);
@@ -269,24 +260,7 @@ class _RegistroScreenState extends State<RegistroScreen> {
     );
   }
 
-  void _mostrarDialogCorreoExistente() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Correo Existente'),
-          content: const Text(
-              'El correo ingresado ya está registrado. Por favor, inicia sesión.'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Aceptar'),
-            ),
-          ],
-        );
-      },
-    );
+  void refresh() {
+    setState(() {});
   }
 }

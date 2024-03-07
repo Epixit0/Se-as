@@ -1,15 +1,16 @@
-import 'package:first_app/lesson_screen/components/bottom_button.dart';
-import 'package:first_app/lesson_screen/components/drag_lesson.dart';
-import 'package:first_app/lesson_screen/components/grid_lesson.dart';
-import 'package:first_app/lesson_screen/components/lesson_app_bar.dart';
-import 'package:first_app/lesson_screen/components/list_lesson.dart';
+import 'package:first_app/components/bottom_button.dart';
+import 'package:first_app/components/drag_lesson.dart';
+import 'package:first_app/components/grid_lesson.dart';
+import 'package:first_app/components/lesson_app_bar.dart';
+import 'package:first_app/components/list_lesson.dart';
 import 'package:flutter/material.dart';
-import 'package:first_app/lesson_screen/components/quiz_lesson.dart';
+import 'package:first_app/components/quiz_lesson.dart';
 
 class LessonScreen extends StatefulWidget {
+  static String routeName = "/lesson_screen";
+
   static int answers = 0;
   const LessonScreen({Key? key}) : super(key: key);
-
   @override
   State<StatefulWidget> createState() {
     return LessonScreenState();
@@ -53,8 +54,8 @@ class LessonScreenState extends State<LessonScreen> {
           checkButton: bottomButton(context, 'SIGUIENTE')),
       DragLesson(
           'images/hello.gif',
-          ['Hola', 'Permiso', 'Gracias', 'Por favor', 'Adios', 'Hasta'],
-          ['Hola'],
+          const ['Hola', 'Permiso', 'Gracias', 'Por favor', 'Adios', 'Hasta'],
+          const ['Hola'],
           checkButton: bottomButton(context, 'SIGUIENTE')),
       ListLesson(
           'Traduce la siguiente seña',

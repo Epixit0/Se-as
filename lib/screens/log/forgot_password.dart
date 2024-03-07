@@ -1,10 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({Key? key}) : super(key: key);
+  static String routeName = "/forgot_password";
 
+  const ChangePasswordScreen({Key? key}) : super(key: key);
   @override
   ChangePasswordScreenState createState() => ChangePasswordScreenState();
 }
@@ -111,7 +114,6 @@ class ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
         await _updatePasswordInFirestore(_auth.currentUser!.uid, _newPassword);
 
-        // ignore: use_build_context_synchronously
         showDialog(
           context: context,
           builder: (context) {
@@ -131,7 +133,6 @@ class ChangePasswordScreenState extends State<ChangePasswordScreen> {
           },
         );
       } catch (e) {
-        // ignore: use_build_context_synchronously
         showDialog(
           context: context,
           builder: (context) {
@@ -184,10 +185,4 @@ class ChangePasswordScreenState extends State<ChangePasswordScreen> {
       print('Error updating password in Firestore: $e');
     }
   }
-}
-
-void main() {
-  runApp(const MaterialApp(
-    home: ChangePasswordScreen(),
-  ));
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:first_app/lesson_screen/lesson_screen.dart';
+import 'package:first_app/screens/lesson/lesson_screen.dart';
 
 class QuizLesson extends StatefulWidget {
   final Widget checkButton;

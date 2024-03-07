@@ -1,16 +1,18 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:first_app/screens/levels.dart';
-import 'package:first_app/screens/perfin.dart';
+import 'package:first_app/screens/levels/levels.dart';
+import 'package:first_app/screens/home/perfin.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class HomeScreen extends StatefulWidget {
+  static String routeName = "/home";
+
+  const HomeScreen({super.key});
   @override
-  State<Home> createState() => _HomeState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class _HomeState extends State<Home> {
       body: IndexedStack(
         index: _currentIndex,
         children: <Widget>[
-          const Levels(),
+          const LevelsScreen(),
           const Center(
             child: Text(
               'Lecciones',
@@ -42,7 +44,7 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          const PerfilPage()
+          const PerfilScreen()
         ],
       ),
     );
