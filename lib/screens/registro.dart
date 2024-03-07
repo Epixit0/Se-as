@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home.dart';
 
 class RegistroScreen extends StatefulWidget {
-  const RegistroScreen({super.key});
+  const RegistroScreen({Key? key}) : super(key: key);
 
   @override
   State<RegistroScreen> createState() => _RegistroScreenState();
@@ -50,7 +50,6 @@ class _RegistroScreenState extends State<RegistroScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // get started text
                       const Text(
                         'Registro',
                         style: TextStyle(
@@ -185,30 +184,35 @@ class _RegistroScreenState extends State<RegistroScreen> {
                             if (_formSignupKey.currentState?.validate() ??
                                 false) {
                               try {
-                                final newUser =
-                                    await _auth.createUserWithEmailAndPassword(
-                                  email: _correo,
-                                  password: _contrasena,
-                                );
+                                final result = await _auth
+                                    .fetchSignInMethodsForEmail(_correo);
 
-                                if (newUser.user != null) {
-                                  await _firestore
-                                      .collection('users')
-                                      .doc(newUser.user!.uid)
-                                      .set({
-                                    'nombre': _nombre,
-                                    'correo': _correo,
-                                    'contrasena': _contrasena,
-                                  });
-                                  // Navegar a la siguiente pantalla
-                                  // ignore: use_build_context_synchronously
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const Home(), // Asegúrate de importar HomeScreen
-                                    ),
+                                if (result.isNotEmpty) {
+                                  _mostrarDialogCorreoExistente();
+                                } else {
+                                  final newUser = await _auth
+                                      .createUserWithEmailAndPassword(
+                                    email: _correo,
+                                    password: _contrasena,
                                   );
+
+                                  if (newUser.user != null) {
+                                    await _firestore
+                                        .collection('users')
+                                        .doc(newUser.user!.uid)
+                                        .set({
+                                      'nombre': _nombre,
+                                      'correo': _correo,
+                                      'contrasena': _contrasena,
+                                    });
+
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const Home(),
+                                      ),
+                                    );
+                                  }
                                 }
                               } catch (e) {
                                 print(e);
@@ -226,7 +230,6 @@ class _RegistroScreenState extends State<RegistroScreen> {
                       const SizedBox(
                         height: 15.0,
                       ),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -263,6 +266,27 @@ class _RegistroScreenState extends State<RegistroScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  void _mostrarDialogCorreoExistente() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Correo Existente'),
+          content: const Text(
+              'El correo ingresado ya está registrado. Por favor, inicia sesión.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Aceptar'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

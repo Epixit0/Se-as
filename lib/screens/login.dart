@@ -125,11 +125,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             const SizedBox(
                               height: 15,
                             ),
-                            const Text(
-                              'Has olvidado la Contraseña?',
-                              style: TextStyle(
-                                  color: Colors.lightBlue, fontSize: 18),
-                            ),
                             const SizedBox(
                               height: 15,
                             ),
