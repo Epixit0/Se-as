@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:first_app/screens/evaluations/evaluations.dart';
 import 'package:first_app/screens/levels/levels.dart';
 import 'package:first_app/screens/home/perfin.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
         indicatorColor: Colors.blueAccent,
         selectedIndex: _currentIndex,
         destinations: <Widget>[
-          navBarItem('images/level.png', 'images/level2.png', 'Nivel'),
-          navBarItem('images/book.png', 'images/book2.png', 'Lecciones'),
+          navBarItem('images/level.png', 'images/level2.png', 'Lecciones'),
+          navBarItem('images/book.png', 'images/book2.png', 'Evaluaciones'),
           navBarItem('images/person.png', 'images/person2.png', 'Perfil'),
         ],
       ),
@@ -35,15 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         index: _currentIndex,
         children: <Widget>[
           const LevelsScreen(),
-          const Center(
-            child: Text(
-              'Lecciones',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-          ),
+          const EvaluationScreen(),
           const PerfilScreen()
         ],
       ),

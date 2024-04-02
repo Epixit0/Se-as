@@ -1,8 +1,8 @@
 import 'package:first_app/auth/auth.dart';
-import 'package:first_app/screens/lesson/lesson_screen.dart';
+import 'package:first_app/screens/evaluations/evaluations.dart';
+import 'package:first_app/screens/lesson/lesson1_screen.dart';
 import 'package:first_app/screens/home/home.dart';
 import 'package:first_app/screens/home/perfin.dart';
-import 'package:first_app/screens/levels/leccion1.dart';
 import 'package:first_app/screens/levels/levels.dart';
 import 'package:first_app/screens/log/forgot_password.dart';
 import 'package:first_app/screens/log/login.dart';
@@ -18,7 +18,7 @@ final Map<String, WidgetBuilder> routes = {
   LoginScreen.routeName: (context) => const LoginScreen(),
   SignUpScreen.routeName: (context) => const SignUpScreen(),
   ChangePasswordScreen.routeName: (context) => const ChangePasswordScreen(),
-  LeccionScreen.routeName: (context) => const LeccionScreen(),
   LevelsScreen.routeName: (context) => const LevelsScreen(),
-  LessonScreen.routeName: (context) => const LessonScreen(),
+  Lesson1Screen.routeName: (context) => const Lesson1Screen(),
+  EvaluationScreen.routeName: (context) => const EvaluationScreen(),
 };

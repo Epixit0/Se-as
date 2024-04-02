@@ -1,5 +1,6 @@
 import 'dart:math';
-import 'package:first_app/screens/lesson/lesson_screen.dart';
+import 'package:first_app/screens/lesson/lesson1_screen.dart';
+import 'package:first_app/screens/lesson/lesson2_screen.dart';
 import 'package:flutter/material.dart';
 
 class LevelsScreen extends StatefulWidget {
@@ -39,22 +40,23 @@ class _LevelsScreenState extends State<LevelsScreen> {
               twoLessons(
                   lesson(
                       'images/vocales.png', '1', 'Leccion 1', Colors.green, 1),
-                  lesson(
-                      'images/vocales.png', '0', 'Leccion 2', Colors.red, 2)),
-              const SizedBox(height: 40),
-              lesson('images/vocales.png', '4', 'Evaluacion 1&2',
-                  Colors.lightBlue, 1),
+                  lesson('images/abc.png', '0', 'Leccion 2', Colors.red, 2)),
+              const SizedBox(height: 15),
+              lesson('images/colores.png', '4', 'Leccion 3', Colors.green, 1),
               const SizedBox(
                 height: 15,
               ),
               twoLessons(
                   lesson(
-                      'images/numeros.png', '3', 'Leccion 3', Colors.orange, 3),
+                      'images/numeros.png', '3', 'Leccion 4', Colors.teal, 3),
                   lesson(
-                      'images/numeros.png', '1', 'Leccion 4', Colors.teal, 4)),
-              const SizedBox(height: 40),
-              lesson('images/vocales.png', '0', 'Evaluacion 3&4',
-                  Colors.lightBlue, 1),
+                      'images/dias.png', '1', 'Leccion 5', Colors.orange, 4)),
+              const SizedBox(height: 15),
+              lesson('images/meses.png', '0', 'Leccion 6', Colors.teal, 1),
+              twoLessons(
+                  lesson('images/saludo.png', '3', 'Leccion 7', Colors.red, 3),
+                  lesson('images/pronombres.png', '1', 'Leccion 8',
+                      Colors.green, 4)),
             ]),
           ],
         ));
@@ -82,12 +84,12 @@ class _LevelsScreenState extends State<LevelsScreen> {
       onTap: () {
         if (lesson == 1) {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const LessonScreen()));
+              MaterialPageRoute(builder: (context) => const Lesson1Screen()));
         }
-        // if (lesson == 2) {
-        //   Navigator.push(context,
-        //       MaterialPageRoute(builder: (context) => const SecondRoute()));
-        // }
+        if (lesson == 2) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Lesson2Screen()));
+        }
         // if (lesson == 3) {
         //   Navigator.push(context,
         //       MaterialPageRoute(builder: (context) => const ThirdRoute()));

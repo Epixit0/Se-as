@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:first_app/screens/lesson/lesson_screen.dart';
+import 'package:first_app/screens/lesson/lesson1_screen.dart';
 
 class ListLesson extends StatefulWidget {
   final Widget checkButton;
@@ -51,7 +51,7 @@ class ListLessonState extends State<ListLesson> {
                         isactive = false;
                       });
                       if (widget.answers[0] == widget.correct) {
-                        LessonScreen.answers++;
+                        Lesson1Screen.answers++;
                       }
                     }
                   },
@@ -71,7 +71,7 @@ class ListLessonState extends State<ListLesson> {
                         isactive = false;
                       });
                       if (widget.answers[1] == widget.correct) {
-                        LessonScreen.answers++;
+                        Lesson1Screen.answers++;
                       }
                     }
                   },
@@ -91,7 +91,7 @@ class ListLessonState extends State<ListLesson> {
                         isactive = false;
                       });
                       if (widget.answers[2] == widget.correct) {
-                        LessonScreen.answers++;
+                        Lesson1Screen.answers++;
                       }
                     }
                   },
@@ -111,7 +111,7 @@ class ListLessonState extends State<ListLesson> {
                         isactive = false;
                       });
                       if (widget.answers[3] == widget.correct) {
-                        LessonScreen.answers++;
+                        Lesson1Screen.answers++;
                       }
                     }
                   },
