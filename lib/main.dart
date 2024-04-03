@@ -15,7 +15,7 @@ void main() async {
   //   const SystemUiOverlayStyle(
   //     statusBarColor: Color.fromARGB(255, 0, 105, 155),
   //     statusBarBrightness: Brightness.light,
-  //   ),
+  //   ),}
   // );
 
   runApp(const MyApp());

@@ -71,8 +71,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           _con.nombre.text = value;
                         },
                         validator: (value) {
+                          String pattern = r'^[a-zA-Z\s]*$';
+                          RegExp regex = new RegExp(pattern);
                           if (value == null || value.isEmpty) {
                             return 'Por favor ingrese nombre completo';
+                          } else if (!regex.hasMatch(value)) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Error'),
+                                  content: const Text(
+                                      'Solo se permiten letras y espacios en el nombre'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: const Text('OK'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                            return 'Solo se permiten letras y espacios en el nombre';
                           }
                           return null;
                         },
@@ -144,8 +166,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         obscureText: _con.obscureText,
                         obscuringCharacter: '*',
                         validator: (value) {
+                          String pattern = r'^(?=.*[A-Z])(?=.*\d).{6,}$';
+                          RegExp regex = new RegExp(pattern);
                           if (value == null || value.isEmpty) {
                             return 'Por favor ingrese una contraseña';
+                          } else if (!regex.hasMatch(value)) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Error'),
+                                  content: const Text(
+                                      'La contraseña debe tener al menos 6 caracteres, incluir una letra mayúscula y un número'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: const Text('OK'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                            return 'La contraseña debe tener al menos 6 caracteres, incluir una letra mayúscula y un número';
                           }
                           return null;
                         },
