@@ -2,11 +2,11 @@ import 'dart:math';
 import 'package:first_app/screens/lesson/lesson1_screen.dart';
 import 'package:first_app/screens/lesson/lesson2_screen.dart';
 import 'package:first_app/screens/lesson/lesson3_screen.dart';
-import 'package:first_app/screens/lesson/lesson4_screen.dart';
-import 'package:first_app/screens/lesson/lesson5_screen.dart';
-import 'package:first_app/screens/lesson/lesson6_screen.dart';
-import 'package:first_app/screens/lesson/lesson7_screen.dart';
-import 'package:first_app/screens/lesson/lesson8_screen.dart';
+// import 'package:first_app/screens/lesson/lesson4_screen.dart';
+// import 'package:first_app/screens/lesson/lesson5_screen.dart';
+// import 'package:first_app/screens/lesson/lesson6_screen.dart';
+// import 'package:first_app/screens/lesson/lesson7_screen.dart';
+// import 'package:first_app/screens/lesson/lesson8_screen.dart';
 import 'package:flutter/material.dart';
 
 class LevelsScreen extends StatefulWidget {
@@ -101,26 +101,26 @@ class _LevelsScreenState extends State<LevelsScreen> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const Lesson3Screen()));
         }
-        if (lesson == 4) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Lesson4Screen()));
-        }
-        if (lesson == 5) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Lesson5Screen()));
-        }
-        if (lesson == 6) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Lesson6Screen()));
-        }
-        if (lesson == 7) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Lesson7Screen()));
-        }
-        if (lesson == 8) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Lesson8Screen()));
-        }
+        // if (lesson == 4) {
+        //   Navigator.push(context,
+        //       MaterialPageRoute(builder: (context) => const Lesson4Screen()));
+        // }
+        // if (lesson == 5) {
+        //   Navigator.push(context,
+        //       MaterialPageRoute(builder: (context) => const Lesson5Screen()));
+        // }
+        // if (lesson == 6) {
+        //   Navigator.push(context,
+        //       MaterialPageRoute(builder: (context) => const Lesson6Screen()));
+        // }
+        // if (lesson == 7) {
+        //   Navigator.push(context,
+        //       MaterialPageRoute(builder: (context) => const Lesson7Screen()));
+        // }
+        // if (lesson == 8) {
+        //   Navigator.push(context,
+        //       MaterialPageRoute(builder: (context) => const Lesson8Screen()));
+        // }
       },
       child: Column(children: <Widget>[
         Stack(

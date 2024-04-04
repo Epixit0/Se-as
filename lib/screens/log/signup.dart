@@ -72,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                         validator: (value) {
                           String pattern = r'^[a-zA-Z\s]*$';
-                          RegExp regex = new RegExp(pattern);
+                          RegExp regex = RegExp(pattern);
                           if (value == null || value.isEmpty) {
                             return 'Por favor ingrese nombre completo';
                           } else if (!regex.hasMatch(value)) {
@@ -167,7 +167,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         obscuringCharacter: '*',
                         validator: (value) {
                           String pattern = r'^(?=.*[A-Z])(?=.*\d).{6,}$';
-                          RegExp regex = new RegExp(pattern);
+                          RegExp regex = RegExp(pattern);
                           if (value == null || value.isEmpty) {
                             return 'Por favor ingrese una contraseña';
                           } else if (!regex.hasMatch(value)) {

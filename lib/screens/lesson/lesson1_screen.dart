@@ -59,7 +59,8 @@ class Lesson1ScreenState extends State<Lesson1Screen> {
         'images/o.png',
         checkButton: bottomButton(context, 'SIGUIENTE'),
       ),
-      DragLesson('images/u.png', ['A', 'O', 'Vocales', 'I', 'U', 'E'], ['U'],
+      DragLesson(
+          'images/u.png', ['A', 'O', 'Vocales', 'I', 'U', 'E'], const ['U'],
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Letra I',

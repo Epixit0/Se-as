@@ -83,8 +83,10 @@ class Lesson3ScreenState extends State<Lesson3Screen> {
         'images/negro.gif',
         checkButton: bottomButton(context, 'SIGUIENTE'),
       ),
-      DragLesson('images/plateado.gif',
-          ['Blanco', 'Dorado', 'Naranja', 'Plateado', 'Verde'], ['Plateado'],
+      DragLesson(
+          'images/plateado.gif',
+          ['Blanco', 'Dorado', 'Naranja', 'Plateado', 'Verde'],
+          const ['Plateado'],
           checkButton: bottomButton(context, 'SIGUIENTE')),
       ListLesson(
           'Traduce la siguiente seña',
@@ -107,7 +109,7 @@ class Lesson3ScreenState extends State<Lesson3Screen> {
       DragLesson(
           'images/naranja.gif',
           ['Naranja', 'Azul', 'Dorado', 'Rojo', 'Verde', 'Plateado'],
-          ['Naranja'],
+          const ['Naranja'],
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Color Dorado',

@@ -60,7 +60,7 @@ class Lesson7ScreenState extends State<Lesson7Screen> {
       DragLesson(
           'images/hello.gif',
           ['Hola', 'Permiso', 'Gracias', 'Por favor', 'Adios', 'Hasta'],
-          ['Hola'],
+          const ['Hola'],
           checkButton: bottomButton(context, 'SIGUIENTE')),
       ListLesson(
           'Traduce la siguiente seña',
@@ -86,7 +86,7 @@ class Lesson7ScreenState extends State<Lesson7Screen> {
       DragLesson(
           'images/hello.gif',
           ['Hola', 'Permiso', 'Gracias', 'Por favor', 'Adios', 'Hasta'],
-          ['Hola'],
+          const ['Hola'],
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Letra U',

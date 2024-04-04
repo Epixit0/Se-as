@@ -104,7 +104,7 @@ class Lesson2ScreenState extends State<Lesson2Screen> {
         'images/q.png',
         checkButton: bottomButton(context, 'SIGUIENTE'),
       ),
-      DragLesson('images/p.gif', ['P', 'R', 'Q', 'S', 'M', 'L'], ['L'],
+      DragLesson('images/p.gif', ['P', 'R', 'Q', 'S', 'M', 'L'], const ['L'],
           checkButton: bottomButton(context, 'SIGUIENTE')),
       ListLesson('Cual es la siguiente seña', const ['D', 'F', 'C', 'H'],
           'images/f.png', 'F',
@@ -121,7 +121,7 @@ class Lesson2ScreenState extends State<Lesson2Screen> {
       ListLesson('Cual es la siguiente seña', const ["Y", 'X', 'W', 'Z'],
           'images/z.gif', 'Z',
           checkButton: bottomButton(context, 'SIGUIENTE')),
-      DragLesson('images/t.png', ['V', 'N', 'S', 'W', 'O', 'T'], ['T'],
+      DragLesson('images/t.png', ['V', 'N', 'S', 'W', 'O', 'T'], const ['T'],
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Letra K',
