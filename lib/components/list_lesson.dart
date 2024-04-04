@@ -143,6 +143,7 @@ class ListLessonState extends State<ListLesson> {
             ),
             child: Text(
               title,
+              textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 17),
             ),
           )
@@ -159,6 +160,7 @@ class ListLessonState extends State<ListLesson> {
             ),
             child: Text(
               title,
+              textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 17),
             ),
           );

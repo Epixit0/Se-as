@@ -1,6 +1,12 @@
 import 'dart:math';
 import 'package:first_app/screens/lesson/lesson1_screen.dart';
 import 'package:first_app/screens/lesson/lesson2_screen.dart';
+import 'package:first_app/screens/lesson/lesson3_screen.dart';
+import 'package:first_app/screens/lesson/lesson4_screen.dart';
+import 'package:first_app/screens/lesson/lesson5_screen.dart';
+import 'package:first_app/screens/lesson/lesson6_screen.dart';
+import 'package:first_app/screens/lesson/lesson7_screen.dart';
+import 'package:first_app/screens/lesson/lesson8_screen.dart';
 import 'package:flutter/material.dart';
 
 class LevelsScreen extends StatefulWidget {
@@ -17,6 +23,7 @@ class _LevelsScreenState extends State<LevelsScreen> {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 0, 105, 155),
         appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
             elevation: 1.7,
             title: Row(
@@ -42,21 +49,21 @@ class _LevelsScreenState extends State<LevelsScreen> {
                       'images/vocales.png', '1', 'Leccion 1', Colors.green, 1),
                   lesson('images/abc.png', '0', 'Leccion 2', Colors.red, 2)),
               const SizedBox(height: 15),
-              lesson('images/colores.png', '4', 'Leccion 3', Colors.green, 1),
+              lesson('images/colores.png', '4', 'Leccion 3', Colors.green, 3),
               const SizedBox(
                 height: 15,
               ),
               twoLessons(
                   lesson(
-                      'images/numeros.png', '3', 'Leccion 4', Colors.teal, 3),
+                      'images/numeros.png', '3', 'Leccion 4', Colors.teal, 4),
                   lesson(
-                      'images/dias.png', '1', 'Leccion 5', Colors.orange, 4)),
+                      'images/dias.png', '1', 'Leccion 5', Colors.orange, 5)),
               const SizedBox(height: 15),
-              lesson('images/meses.png', '0', 'Leccion 6', Colors.teal, 1),
+              lesson('images/meses.png', '0', 'Leccion 6', Colors.teal, 6),
               twoLessons(
-                  lesson('images/saludo.png', '3', 'Leccion 7', Colors.red, 3),
+                  lesson('images/saludo.png', '3', 'Leccion 7', Colors.red, 7),
                   lesson('images/pronombres.png', '1', 'Leccion 8',
-                      Colors.green, 4)),
+                      Colors.green, 8)),
             ]),
           ],
         ));
@@ -90,18 +97,30 @@ class _LevelsScreenState extends State<LevelsScreen> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const Lesson2Screen()));
         }
-        // if (lesson == 3) {
-        //   Navigator.push(context,
-        //       MaterialPageRoute(builder: (context) => const ThirdRoute()));
-        // }
-        // if (lesson == 4) {
-        //   Navigator.push(context,
-        //       MaterialPageRoute(builder: (context) => const FourthRoute()));
-        // }
-        // if (lesson == 5) {
-        //   Navigator.push(context,
-        //       MaterialPageRoute(builder: (context) => const FithRoute()));
-        // }
+        if (lesson == 3) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Lesson3Screen()));
+        }
+        if (lesson == 4) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Lesson4Screen()));
+        }
+        if (lesson == 5) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Lesson5Screen()));
+        }
+        if (lesson == 6) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Lesson6Screen()));
+        }
+        if (lesson == 7) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Lesson7Screen()));
+        }
+        if (lesson == 8) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Lesson8Screen()));
+        }
       },
       child: Column(children: <Widget>[
         Stack(

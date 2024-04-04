@@ -33,7 +33,7 @@ class LoginController {
       bool isLogin = await _auth.login(email, password);
       if (isLogin) {
         if (user.currentUser != null) {
-          Navigator.pushNamed(context, HomeScreen.routeName);
+          Navigator.pushReplacementNamed(context, HomeScreen.routeName);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("El usuario ha iniciado Sesion"),
