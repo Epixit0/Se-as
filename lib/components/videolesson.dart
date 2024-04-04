@@ -33,6 +33,12 @@ class _VideoLessonState extends State<VideoLesson>
   }
 
   @override
+  void dispose() {
+    flickManager.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 2, vsync: this);
 

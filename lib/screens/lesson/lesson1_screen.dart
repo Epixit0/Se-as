@@ -47,11 +47,8 @@ class Lesson1ScreenState extends State<Lesson1Screen> {
         'images/A.png',
         checkButton: bottomButton(context, 'SIGUIENTE'),
       ),
-      ListLesson(
-          'Traduce la siguiente seña',
-          const ['Hola', 'Buenas Noches', 'Adios', 'Buenas Tardes'],
-          'images/hello.gif',
-          'Hola',
+      ListLesson('Traduce la siguiente seña', const ['U', 'E', 'I', 'O'],
+          'images/u.png', 'U',
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Letra O',
@@ -62,16 +59,19 @@ class Lesson1ScreenState extends State<Lesson1Screen> {
         'images/o.png',
         checkButton: bottomButton(context, 'SIGUIENTE'),
       ),
-      DragLesson(
-          'images/hello.gif',
-          ['Hola', 'Permiso', 'Gracias', 'Por favor', 'Adios', 'Hasta'],
-          ['Hola'],
+      DragLesson('images/u.png', ['A', 'O', 'Vocales', 'I', 'U', 'E'], ['U'],
           checkButton: bottomButton(context, 'SIGUIENTE')),
-      ListLesson(
-          'Traduce la siguiente seña',
-          const ['Buenas Noches.', 'Gracias', 'Por favor', 'Adios'],
-          'images/hello.gif',
-          'Adios',
+      GridLesson(
+        'Letra I',
+        'images/i.png',
+        'images/E.png',
+        'images/A.png',
+        'images/u.png',
+        'images/i.png',
+        checkButton: bottomButton(context, 'SIGUIENTE'),
+      ),
+      ListLesson('Traduce la siguiente seña', const ['U', 'O', 'A', 'I'],
+          'images/o.png', 'O',
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Letra U',
@@ -82,24 +82,16 @@ class Lesson1ScreenState extends State<Lesson1Screen> {
         'images/u.png',
         checkButton: bottomButton(context, 'SIGUIENTE'),
       ),
-      ListLesson(
-          'Traduce la siguiente seña',
-          const ["Permiso", 'Buenos dias', 'Adios', 'Hola'],
-          'images/hello.gif',
-          'Hola',
-          checkButton: bottomButton(context, 'SIGUIENTE')),
-      DragLesson(
-          'images/hello.gif',
-          ['Hola', 'Permiso', 'Gracias', 'Por favor', 'Adios', 'Hasta'],
-          ['Hola'],
+      ListLesson('Traduce la siguiente seña', const ["E", 'A', 'O', 'I'],
+          'images/i.png', 'I',
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
-        'Letra U',
+        'Letra A',
         'images/u.png',
-        'images/o.png',
+        'images/A.png',
         'images/i.png',
         'images/E.png',
-        'images/u.png',
+        'images/A.png',
         checkButton: bottomButton(context, 'SIGUIENTE'),
       )
     ];
