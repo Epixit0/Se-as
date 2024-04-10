@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously, unnecessary_null_comparison
-
 import 'package:first_app/screens/log/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/components/scaffold_home.dart';
@@ -7,7 +5,7 @@ import 'package:flutter/scheduler.dart';
 
 class LoginScreen extends StatefulWidget {
   static String routeName = "/login";
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -20,9 +18,77 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
 
-    SchedulerBinding.instance.addPostFrameCallback((timestamp) {
+    SchedulerBinding.instance!.addPostFrameCallback((timestamp) {
       _con.init(context, refresh);
     });
+  }
+
+  Future<void> _showForgotPasswordDialog(BuildContext context) async {
+    TextEditingController emailController = TextEditingController();
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Recuperar Contraseña"),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                    "Por favor, ingrese su correo electrónico para recuperar su contraseña."),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: 'Correo Electrónico',
+                    hintText: 'Ingrese su correo electrónico',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Cerrar el diálogo
+              },
+              child: Text("Cancelar"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                String email = emailController.text.trim();
+                _con.resetPassword(email);
+                Navigator.of(context).pop(); // Cerrar el diálogo
+              },
+              child: Text("Enviar"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Método para mostrar el diálogo de error
+  Future<void> _showErrorDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text(
+              "El correo que ingresó no existe. Por favor, regístrese con un correo válido."),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Cerrar el diálogo
+              },
+              child: Text("Aceptar"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -129,6 +195,21 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: Colors.black12,
                             ),
                             borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          _showForgotPasswordDialog(context);
+                        },
+                        child: Text(
+                          '¿Olvidaste tu contraseña?',
+                          style: TextStyle(
+                            color: Colors.lightBlue,
+                            fontSize: 16,
                           ),
                         ),
                       ),
