@@ -124,19 +124,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 15.0,
                       ),
                       TextFormField(
-                        onChanged: (value) {
-                          _con.correo.text = value;
-                        },
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor ingrese un correo';
+                        onFieldSubmitted: (value) {
+                          String pattern = r'^.+@(gmail\.com|hotmail\.com)$';
+                          RegExp regex = new RegExp(pattern);
+                          if (!regex.hasMatch(value)) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Error'),
+                                  content: const Text(
+                                      'Por favor ingrese un correo que termine en @gmail.com o @hotmail.com'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: const Text('OK'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           }
-                          return null;
                         },
                         keyboardType: TextInputType.emailAddress,
                         controller: _con.correo,
                         decoration: InputDecoration(
-                          label: const Text('Correo'),
+                          labelText: 'Correo',
                           hintText: 'Ingrese el correo',
                           prefixIcon: const Icon(Icons.email),
                           hintStyle: const TextStyle(
