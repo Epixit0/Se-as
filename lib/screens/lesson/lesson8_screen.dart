@@ -32,6 +32,7 @@ class Lesson8ScreenState extends State<Lesson8Screen> {
           'images/Leccion8.mp4',
           'Leccion 8',
           'Pronombres Personales',
+          1,
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Letra A',

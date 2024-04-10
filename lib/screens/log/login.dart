@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
-                        'Iniciar Sesion',
+                        'Iniciar Sesión',
                         style: TextStyle(
                           fontSize: 40.0,
                           fontWeight: FontWeight.w900,
@@ -150,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.lightBlue),
                           child: const Text(
-                            'Iniciar Sesion',
+                            'Iniciar Sesión',
                             style: TextStyle(color: Colors.white, fontSize: 25),
                           ),
                         ),

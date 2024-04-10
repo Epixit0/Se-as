@@ -58,6 +58,7 @@ class Lesson3ScreenState extends State<Lesson3Screen> {
           'images/Leccion3.mp4',
           'Leccion 3',
           'Los Colores',
+          1,
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Color Morado',

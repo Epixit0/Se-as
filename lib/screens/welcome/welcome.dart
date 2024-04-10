@@ -52,7 +52,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Column(
                   children: [
                     Button(
-                      buttonText: 'Iniciar Sesion',
+                      buttonText: 'Inicia sesión',
                       onTap: LoginScreen(),
                     ),
                     SizedBox(height: 10),

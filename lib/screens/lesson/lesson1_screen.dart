@@ -37,6 +37,7 @@ class Lesson1ScreenState extends State<Lesson1Screen> {
           'images/Leccion1.mp4',
           'Leccion 1',
           'Las Vocales',
+          1,
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Letra A',

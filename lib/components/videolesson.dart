@@ -1,3 +1,4 @@
+import 'package:first_app/components/sena2_widget.dart';
 import 'package:first_app/components/sena_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flick_video_player/flick_video_player.dart';
@@ -11,9 +12,10 @@ class VideoLesson extends StatefulWidget {
   final String leccion;
   final String titulo;
   final String tema;
+  final int option;
 
-  const VideoLesson(
-      this.images, this.names, this.info, this.leccion, this.titulo, this.tema,
+  const VideoLesson(this.images, this.names, this.info, this.leccion,
+      this.titulo, this.tema, this.option,
       {required this.checkButton, Key? key})
       : super(key: key);
 
@@ -87,8 +89,13 @@ class _VideoLessonState extends State<VideoLesson>
                 ListView.builder(
                     itemCount: widget.images.length,
                     itemBuilder: (contex, index) {
-                      return SenaWidget('Seña', '${widget.names[index]}',
-                          'images/${widget.images[index]}');
+                      if (widget.option == 1) {
+                        return SenaWidget('Seña', '${widget.names[index]}',
+                            'images/${widget.images[index]}');
+                      } else {
+                        return SenaWidget2('Seña', '${widget.names[index]}',
+                            'images/${widget.images[index]}');
+                      }
                     }),
               ]),
             ),

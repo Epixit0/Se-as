@@ -81,7 +81,7 @@ class Lesson2ScreenState extends State<Lesson2Screen> {
         'Letra Y',
         'Letra Z'
       ], 'El abecedario en el lenguaje de señas venezolano es un aspecto fundamental para la comunicación gestual efectiva. Cada letra del alfabeto se representa mediante gestos específicos, los cuales son la base para formar palabras y expresar ideas',
-          'images/Leccion2.mp4', 'Leccion 2', 'El Abcdario',
+          'images/Leccion2.mp4', 'Leccion 2', 'El Abcdario', 1,
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Letra P',

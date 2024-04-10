@@ -2,10 +2,10 @@ import 'dart:math';
 import 'package:first_app/screens/lesson/lesson1_screen.dart';
 import 'package:first_app/screens/lesson/lesson2_screen.dart';
 import 'package:first_app/screens/lesson/lesson3_screen.dart';
-// import 'package:first_app/screens/lesson/lesson4_screen.dart';
-// import 'package:first_app/screens/lesson/lesson5_screen.dart';
-// import 'package:first_app/screens/lesson/lesson6_screen.dart';
-// import 'package:first_app/screens/lesson/lesson7_screen.dart';
+import 'package:first_app/screens/lesson/lesson4_screen.dart';
+import 'package:first_app/screens/lesson/lesson5_screen.dart';
+import 'package:first_app/screens/lesson/lesson6_screen.dart';
+//import 'package:first_app/screens/lesson/lesson7_screen.dart';
 // import 'package:first_app/screens/lesson/lesson8_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -60,10 +60,6 @@ class _LevelsScreenState extends State<LevelsScreen> {
                       'images/dias.png', '1', 'Leccion 5', Colors.orange, 5)),
               const SizedBox(height: 15),
               lesson('images/meses.png', '0', 'Leccion 6', Colors.teal, 6),
-              twoLessons(
-                  lesson('images/saludo.png', '3', 'Leccion 7', Colors.red, 7),
-                  lesson('images/pronombres.png', '1', 'Leccion 8',
-                      Colors.green, 8)),
             ]),
           ],
         ));
@@ -101,22 +97,22 @@ class _LevelsScreenState extends State<LevelsScreen> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const Lesson3Screen()));
         }
-        // if (lesson == 4) {
-        //   Navigator.push(context,
-        //       MaterialPageRoute(builder: (context) => const Lesson4Screen()));
-        // }
-        // if (lesson == 5) {
-        //   Navigator.push(context,
-        //       MaterialPageRoute(builder: (context) => const Lesson5Screen()));
-        // }
-        // if (lesson == 6) {
-        //   Navigator.push(context,
-        //       MaterialPageRoute(builder: (context) => const Lesson6Screen()));
-        // }
-        // if (lesson == 7) {
-        //   Navigator.push(context,
-        //       MaterialPageRoute(builder: (context) => const Lesson7Screen()));
-        // }
+        if (lesson == 4) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Lesson4Screen()));
+        }
+        if (lesson == 5) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Lesson5Screen()));
+        }
+        if (lesson == 6) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Lesson6Screen()));
+        }
+        //if (lesson == 7) {
+        //  Navigator.push(context,
+        //      MaterialPageRoute(builder: (context) => const Lesson7Screen()));
+        //}
         // if (lesson == 8) {
         //   Navigator.push(context,
         //       MaterialPageRoute(builder: (context) => const Lesson8Screen()));
