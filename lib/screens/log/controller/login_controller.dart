@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously, prefer_final_fields, deprecated_member_use, unrelated_type_equality_checks
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/auth/auth.dart';
 import 'package:first_app/screens/home/home.dart';
@@ -53,7 +51,7 @@ class LoginController {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text("the user cannot be authenticated"),
+            content: Text("El usuario no puede ser autenticado"),
             backgroundColor: Color(0xFF36499B),
             elevation: 10,
           ),
@@ -65,6 +63,41 @@ class LoginController {
           content: Text("Error: $e"),
           backgroundColor: const Color(0xFF36499B),
           elevation: 10,
+        ),
+      );
+    }
+  }
+
+  Future<void> resetPassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+              'Se ha enviado un correo electrónico para restablecer la contraseña.'),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      if (e.code == 'user-not-found') {
+        errorMessage =
+            "El correo electrónico que ingresó no está registrado. Por favor, regístrese con un correo válido.";
+      } else {
+        errorMessage =
+            "Error al enviar el correo electrónico de restablecimiento de contraseña: ${e.code}";
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(errorMessage),
+          backgroundColor: const Color(0xFF36499B),
+          elevation: 10,
+        ),
+      );
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+              'Error al enviar el correo electrónico de restablecimiento de contraseña: $error'),
         ),
       );
     }

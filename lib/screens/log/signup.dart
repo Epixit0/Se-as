@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print, use_build_context_synchronously, deprecated_member_use
-
 import 'package:first_app/screens/log/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/screens/log/login.dart';
@@ -21,7 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void initState() {
     super.initState();
 
-    SchedulerBinding.instance.addPostFrameCallback((timestamp) {
+    SchedulerBinding.instance!.addPostFrameCallback((timestamp) {
       _con.init(context, refresh);
     });
   }
@@ -259,8 +257,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   _con.formSignupKey.currentState!.save();
                                   _con.register().then(
                                     (value) {
-                                      Navigator.pushNamed(
-                                          context, HomeScreen.routeName);
+                                      _mostrarAlertaRegistroExitoso();
                                     },
                                   );
                                 }
@@ -321,5 +318,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void refresh() {
     setState(() {});
+  }
+
+  void _mostrarAlertaRegistroExitoso() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Registro Exitoso'),
+          content: const Text(
+              'Por favor, es importante tener presente que al momento de registrar tu dirección de correo electrónico, en caso de que ésta no exista, no será factible acceder al enlace de recuperación que será enviado a dicha dirección de correo electrónico ingresada.'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, HomeScreen.routeName);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
