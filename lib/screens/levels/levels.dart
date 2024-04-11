@@ -5,6 +5,7 @@ import 'package:first_app/screens/lesson/lesson3_screen.dart';
 import 'package:first_app/screens/lesson/lesson4_screen.dart';
 import 'package:first_app/screens/lesson/lesson5_screen.dart';
 import 'package:first_app/screens/lesson/lesson6_screen.dart';
+import 'package:first_app/variables.dart';
 //import 'package:first_app/screens/lesson/lesson7_screen.dart';
 // import 'package:first_app/screens/lesson/lesson8_screen.dart';
 import 'package:flutter/material.dart';
@@ -86,26 +87,44 @@ class _LevelsScreenState extends State<LevelsScreen> {
     return InkWell(
       onTap: () {
         if (lesson == 1) {
+          setState(() {
+            respuestas = 0;
+          });
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const Lesson1Screen()));
         }
         if (lesson == 2) {
+          setState(() {
+            respuestas = 0;
+          });
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const Lesson2Screen()));
         }
         if (lesson == 3) {
+          setState(() {
+            respuestas = 0;
+          });
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const Lesson3Screen()));
         }
         if (lesson == 4) {
+          setState(() {
+            respuestas = 0;
+          });
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const Lesson4Screen()));
         }
         if (lesson == 5) {
+          setState(() {
+            respuestas = 0;
+          });
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const Lesson5Screen()));
         }
         if (lesson == 6) {
+          setState(() {
+            respuestas = 0;
+          });
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const Lesson6Screen()));
         }

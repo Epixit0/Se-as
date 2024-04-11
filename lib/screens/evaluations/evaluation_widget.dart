@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class EvaluationWidget extends StatefulWidget {
@@ -21,7 +22,7 @@ class _EvaluationWidgetState extends State<EvaluationWidget> {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Container(
             width: double.infinity,
-            height: 130,
+            height: 150,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
@@ -74,38 +75,7 @@ class _EvaluationWidgetState extends State<EvaluationWidget> {
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black)),
                               const Spacer(),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 200,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(
-                                            255, 0, 105, 155),
-                                        borderRadius: BorderRadius.circular(18),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 6),
-                                        child: Row(children: [
-                                          Image.asset('images/test.png'),
-                                          const SizedBox(width: 10),
-                                          const Text(
-                                            'Realizar Evaluacion',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ]),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
+                              const DialogExample()
                             ],
                           ),
                         )
@@ -124,6 +94,63 @@ class _EvaluationWidgetState extends State<EvaluationWidget> {
       decoration: BoxDecoration(
           color: Colors.white,
           image: DecorationImage(image: AssetImage(widget.image))),
+    );
+  }
+}
+
+class DialogExample extends StatelessWidget {
+  const DialogExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () => showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Upss'),
+          icon: Image.asset('images/soon.png'),
+          content: const Text(
+            'Las evaluaciones estaran disponibles proximamente',
+            style: TextStyle(fontSize: 20),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Row(
+          children: [
+            Container(
+              width: 200,
+              height: 30,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 0, 105, 155),
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                child: Row(children: [
+                  Image.asset('images/test.png'),
+                  const SizedBox(width: 10),
+                  const Text(
+                    'Realizar Evaluacion',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ]),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

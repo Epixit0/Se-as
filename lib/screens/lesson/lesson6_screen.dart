@@ -1,15 +1,16 @@
+import 'package:first_app/auth/firestore.dart';
 import 'package:first_app/components/bottom_button.dart';
 import 'package:first_app/components/drag_lesson.dart';
 import 'package:first_app/components/grid_lesson.dart';
 import 'package:first_app/components/lesson_app_bar.dart';
 import 'package:first_app/components/list_lesson.dart';
 import 'package:first_app/components/videolesson.dart';
+import 'package:first_app/variables.dart';
 import 'package:flutter/material.dart';
 
 class Lesson6Screen extends StatefulWidget {
   static String routeName = "/lesson6_screen";
 
-  static int answers = 0;
   const Lesson6Screen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -18,7 +19,7 @@ class Lesson6Screen extends StatefulWidget {
 }
 
 class Lesson6ScreenState extends State<Lesson6Screen> {
-  double percent = 10.0;
+  double percent = 0;
   int index = 0;
 
   @override
@@ -111,7 +112,7 @@ class Lesson6ScreenState extends State<Lesson6Screen> {
           'images/febrero.gif',
           'Febrero',
           checkButton: bottomButton(context, 'SIGUIENTE')),
-      DragLesson('images/Noviembre.gif',
+      DragLesson('images/noviembre.gif',
           ['Diciembre', 'Noviembre', 'Febrero', 'Octubre'], const ['Noviembre'],
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
@@ -122,7 +123,13 @@ class Lesson6ScreenState extends State<Lesson6Screen> {
         'images/mayo.gif',
         'images/mayo.gif',
         checkButton: bottomButton(context, 'SIGUIENTE'),
-      )
+      ),
+      ListLesson(
+          'Traduce la siguiente seña',
+          const ["Febrero", 'Septiembre', 'Enero', 'Marzo'],
+          'images/marzo.gif',
+          'Marzo',
+          checkButton: bottomButton(context, 'SIGUIENTE')),
     ];
 
     return Scaffold(
@@ -144,10 +151,12 @@ class Lesson6ScreenState extends State<Lesson6Screen> {
                 percent += 10;
                 index++;
               } else {
+                FirestoreDatasource.addlesson('Leccion 6', respuestas,
+                    'images/meses.png', 'Meses del Año');
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return dialog('Resultado ${Lesson6Screen.answers} /10 ');
+                    return dialog('Resultado $respuestas /10 ');
                   },
                 );
               }
@@ -193,7 +202,6 @@ class Lesson6ScreenState extends State<Lesson6Screen> {
   }
 
   dialogTitle(String text) {
-    Lesson6Screen.answers = 0;
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(

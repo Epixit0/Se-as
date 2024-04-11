@@ -1,3 +1,4 @@
+import 'package:first_app/components/lesson_item.dart';
 import 'package:first_app/screens/home/controller/perfil_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -40,7 +41,7 @@ class _PerfilScreenState extends State<PerfilScreen> {
           children: [
             Container(
               width: double.infinity,
-              height: 170,
+              height: 300,
               margin: const EdgeInsets.fromLTRB(28, 0, 28, 5),
               padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
@@ -88,42 +89,42 @@ class _PerfilScreenState extends State<PerfilScreen> {
                       fontSize: 12,
                     ),
                   ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ChangePasswordScreen(),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.lock_open, color: Colors.white),
+                    label: const Text('Cambiar Contraseña'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 91, 175, 243),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      _con.signOut();
+                    },
+                    icon: const Icon(Icons.exit_to_app, color: Colors.white),
+                    label: const Text('Cerrar Sesión'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 255, 124, 115),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton.icon(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ChangePasswordScreen(),
-                  ),
-                );
-              },
-              icon: const Icon(Icons.lock_open, color: Colors.white),
-              label: const Text('Cambiar Contraseña'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 91, 175, 243),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton.icon(
-              onPressed: () {
-                _con.signOut();
-              },
-              icon: const Icon(Icons.exit_to_app, color: Colors.white),
-              label: const Text('Cerrar Sesión'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 255, 124, 115),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-            ),
+            const LessonItem(),
           ],
         ),
       ),

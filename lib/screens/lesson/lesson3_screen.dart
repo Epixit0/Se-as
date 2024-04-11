@@ -1,15 +1,16 @@
+import 'package:first_app/auth/firestore.dart';
 import 'package:first_app/components/bottom_button.dart';
 import 'package:first_app/components/drag_lesson.dart';
 import 'package:first_app/components/grid_lesson.dart';
 import 'package:first_app/components/lesson_app_bar.dart';
 import 'package:first_app/components/list_lesson.dart';
 import 'package:first_app/components/videolesson.dart';
+import 'package:first_app/variables.dart';
 import 'package:flutter/material.dart';
 
 class Lesson3Screen extends StatefulWidget {
   static String routeName = "/lesson3_screen";
 
-  static int answers = 0;
   const Lesson3Screen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -18,7 +19,7 @@ class Lesson3Screen extends StatefulWidget {
 }
 
 class Lesson3ScreenState extends State<Lesson3Screen> {
-  double percent = 10.0;
+  double percent = 0;
   int index = 0;
 
   @override
@@ -120,7 +121,13 @@ class Lesson3ScreenState extends State<Lesson3Screen> {
         'images/verde.gif',
         'images/dorado.gif',
         checkButton: bottomButton(context, 'SIGUIENTE'),
-      )
+      ),
+      ListLesson(
+          'Traduce la siguiente seña',
+          const ["Rojo", 'Morado', 'Blanco', 'Amarillo'],
+          'images/amarillo.gif',
+          'Amarillo',
+          checkButton: bottomButton(context, 'SIGUIENTE')),
     ];
 
     return Scaffold(
@@ -142,10 +149,12 @@ class Lesson3ScreenState extends State<Lesson3Screen> {
                 percent += 10;
                 index++;
               } else {
+                FirestoreDatasource.addlesson('Leccion 3', respuestas,
+                    'images/colores.png', 'Los colores');
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return dialog('Resultado ${Lesson3Screen.answers} /10 ');
+                    return dialog('Resultado $respuestas /10 ');
                   },
                 );
               }
@@ -191,7 +200,6 @@ class Lesson3ScreenState extends State<Lesson3Screen> {
   }
 
   dialogTitle(String text) {
-    Lesson3Screen.answers = 0;
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(

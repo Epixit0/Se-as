@@ -1,15 +1,16 @@
+import 'package:first_app/auth/firestore.dart';
 import 'package:first_app/components/bottom_button.dart';
 import 'package:first_app/components/drag_lesson.dart';
 import 'package:first_app/components/grid_lesson.dart';
 import 'package:first_app/components/lesson_app_bar.dart';
 import 'package:first_app/components/list_lesson.dart';
 import 'package:first_app/components/videolesson.dart';
+import 'package:first_app/variables.dart';
 import 'package:flutter/material.dart';
 
 class Lesson4Screen extends StatefulWidget {
   static String routeName = "/lesson4_screen";
 
-  static int answers = 0;
   const Lesson4Screen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -18,7 +19,7 @@ class Lesson4Screen extends StatefulWidget {
 }
 
 class Lesson4ScreenState extends State<Lesson4Screen> {
-  double percent = 10.0;
+  double percent = 0;
   int index = 0;
 
   @override
@@ -128,6 +129,15 @@ class Lesson4ScreenState extends State<Lesson4Screen> {
           'images/100.gif',
           'Numero 100',
           checkButton: bottomButton(context, 'SIGUIENTE')),
+      GridLesson(
+        'Numero 100',
+        'images/100.gif',
+        'images/10.gif',
+        'images/5.gif',
+        'images/1.gif',
+        'images/100.gif',
+        checkButton: bottomButton(context, 'SIGUIENTE'),
+      ),
     ];
 
     return Scaffold(
@@ -149,10 +159,12 @@ class Lesson4ScreenState extends State<Lesson4Screen> {
                 percent += 10;
                 index++;
               } else {
+                FirestoreDatasource.addlesson(
+                    'Leccion 4', respuestas, 'images/numeros.png', 'Numeros');
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return dialog('Resultado ${Lesson4Screen.answers} /10 ');
+                    return dialog('Resultado $respuestas /10 ');
                   },
                 );
               }
@@ -198,7 +210,6 @@ class Lesson4ScreenState extends State<Lesson4Screen> {
   }
 
   dialogTitle(String text) {
-    Lesson4Screen.answers = 0;
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(

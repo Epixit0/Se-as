@@ -1,15 +1,16 @@
+import 'package:first_app/auth/firestore.dart';
 import 'package:first_app/components/bottom_button.dart';
 import 'package:first_app/components/drag_lesson.dart';
 import 'package:first_app/components/grid_lesson.dart';
 import 'package:first_app/components/lesson_app_bar.dart';
 import 'package:first_app/components/list_lesson.dart';
 import 'package:first_app/components/videolesson.dart';
+import 'package:first_app/variables.dart';
 import 'package:flutter/material.dart';
 
 class Lesson1Screen extends StatefulWidget {
   static String routeName = "/lesson_screen";
 
-  static int answers = 0;
   const Lesson1Screen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -18,7 +19,7 @@ class Lesson1Screen extends StatefulWidget {
 }
 
 class Lesson1ScreenState extends State<Lesson1Screen> {
-  double percent = 10.0;
+  double percent = 0;
   int index = 0;
 
   @override
@@ -95,7 +96,10 @@ class Lesson1ScreenState extends State<Lesson1Screen> {
         'images/E.png',
         'images/A.png',
         checkButton: bottomButton(context, 'SIGUIENTE'),
-      )
+      ),
+      ListLesson('Traduce la siguiente seña', const ["U", 'I', 'A', 'E'],
+          'images/u.png', 'U',
+          checkButton: bottomButton(context, 'SIGUIENTE')),
     ];
 
     return Scaffold(
@@ -117,10 +121,12 @@ class Lesson1ScreenState extends State<Lesson1Screen> {
                 percent += 10;
                 index++;
               } else {
+                FirestoreDatasource.addlesson('Leccion 1', respuestas,
+                    'images/vocales.png', 'Las Vocales');
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return dialog('Resultado ${Lesson1Screen.answers} /10 ');
+                    return dialog('Resultado $respuestas /10 ');
                   },
                 );
               }
@@ -166,7 +172,6 @@ class Lesson1ScreenState extends State<Lesson1Screen> {
   }
 
   dialogTitle(String text) {
-    Lesson1Screen.answers = 0;
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(

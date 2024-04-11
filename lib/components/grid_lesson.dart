@@ -1,5 +1,5 @@
+import 'package:first_app/variables.dart';
 import 'package:flutter/material.dart';
-import 'package:first_app/screens/lesson/lesson1_screen.dart';
 
 class GridLesson extends StatefulWidget {
   final Widget checkButton;
@@ -48,7 +48,7 @@ class GridLessonState extends State<GridLesson> {
                     isactive = false;
                   });
                   if (widget.imagen1 == widget.correct) {
-                    Lesson1Screen.answers++;
+                    respuestas++;
                   }
                 }
               },
@@ -65,7 +65,7 @@ class GridLessonState extends State<GridLesson> {
                     isactive = false;
                   });
                   if (widget.imagen2 == widget.correct) {
-                    Lesson1Screen.answers++;
+                    respuestas++;
                   }
                 }
               },
@@ -82,7 +82,7 @@ class GridLessonState extends State<GridLesson> {
                     isactive = false;
                   });
                   if (widget.imagen3 == widget.correct) {
-                    Lesson1Screen.answers++;
+                    respuestas++;
                   }
                 }
               },
@@ -99,7 +99,7 @@ class GridLessonState extends State<GridLesson> {
                     isactive = false;
                   });
                   if (widget.imagen4 == widget.correct) {
-                    Lesson1Screen.answers++;
+                    respuestas++;
                   }
                 }
               },

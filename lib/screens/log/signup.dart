@@ -126,7 +126,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       TextFormField(
                         onFieldSubmitted: (value) {
                           String pattern = r'^.+@(gmail\.com|hotmail\.com)$';
-                          RegExp regex = new RegExp(pattern);
+                          RegExp regex = RegExp(pattern);
                           if (!regex.hasMatch(value)) {
                             showDialog(
                               context: context,

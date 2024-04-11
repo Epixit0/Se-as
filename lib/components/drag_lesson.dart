@@ -1,7 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:first_app/variables.dart';
 import 'package:flutter/material.dart';
-import 'package:first_app/screens/lesson/lesson1_screen.dart';
 import 'package:collection/collection.dart';
 
 //ignore: must_be_immutable
@@ -172,7 +172,8 @@ class DroppableAreaState extends State<DroppableArea> {
             Function eq = const ListEquality().equals;
             acceptedWords.add(data);
             if (eq(acceptedWords, widget.answers)) {
-              Lesson1Screen.answers++;
+              respuestas++;
+              print(respuestas);
             }
           });
           widget.onWordDropped(data);

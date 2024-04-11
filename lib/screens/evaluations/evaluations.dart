@@ -30,10 +30,6 @@ class _EvaluationScreenState extends State<EvaluationScreen> {
                 'images/dias.png', false),
             EvaluationWidget(
                 'Evaluacion 6', 'Los Meses del Año', 'images/meses.png', false),
-            EvaluationWidget(
-                'Evaluacion 7', 'Saludos', 'images/saludo.png', false),
-            EvaluationWidget('Evaluacion 8', 'Los Pronombres',
-                'images/pronombres.png', false),
           ],
         ),
       )),

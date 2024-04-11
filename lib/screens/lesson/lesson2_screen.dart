@@ -1,15 +1,16 @@
+import 'package:first_app/auth/firestore.dart';
 import 'package:first_app/components/bottom_button.dart';
 import 'package:first_app/components/drag_lesson.dart';
 import 'package:first_app/components/grid_lesson.dart';
 import 'package:first_app/components/lesson_app_bar.dart';
 import 'package:first_app/components/list_lesson.dart';
 import 'package:first_app/components/videolesson.dart';
+import 'package:first_app/variables.dart';
 import 'package:flutter/material.dart';
 
 class Lesson2Screen extends StatefulWidget {
   static String routeName = "/lesson2_screen";
 
-  static int answers = 0;
   const Lesson2Screen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -18,7 +19,7 @@ class Lesson2Screen extends StatefulWidget {
 }
 
 class Lesson2ScreenState extends State<Lesson2Screen> {
-  double percent = 10.0;
+  double percent = 0;
   int index = 0;
 
   @override
@@ -81,7 +82,7 @@ class Lesson2ScreenState extends State<Lesson2Screen> {
         'Letra Y',
         'Letra Z'
       ], 'El abecedario en el lenguaje de señas venezolano es un aspecto fundamental para la comunicación gestual efectiva. Cada letra del alfabeto se representa mediante gestos específicos, los cuales son la base para formar palabras y expresar ideas',
-          'images/Leccion2.mp4', 'Leccion 2', 'El Abcdario', 1,
+          'images/Leccion2.mp4', 'Leccion 2', 'El Abcedario', 1,
           checkButton: bottomButton(context, 'SIGUIENTE')),
       GridLesson(
         'Letra P',
@@ -131,7 +132,10 @@ class Lesson2ScreenState extends State<Lesson2Screen> {
         'images/l.png',
         'images/k.png',
         checkButton: bottomButton(context, 'SIGUIENTE'),
-      )
+      ),
+      ListLesson('Cual es la siguiente seña', const ["M", 'P', 'N', 'S'],
+          'images/s.gif', 'S',
+          checkButton: bottomButton(context, 'SIGUIENTE')),
     ];
 
     return Scaffold(
@@ -153,10 +157,12 @@ class Lesson2ScreenState extends State<Lesson2Screen> {
                 percent += 10;
                 index++;
               } else {
+                FirestoreDatasource.addlesson(
+                    'Leccion 2', respuestas, 'images/abc.png', 'El Abcedario');
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return dialog('Resultado ${Lesson2Screen.answers} /10 ');
+                    return dialog('Resultado $respuestas /10 ');
                   },
                 );
               }
@@ -202,7 +208,6 @@ class Lesson2ScreenState extends State<Lesson2Screen> {
   }
 
   dialogTitle(String text) {
-    Lesson2Screen.answers = 0;
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(

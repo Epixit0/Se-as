@@ -44,6 +44,7 @@ dependencies:
   msh_checkbox: ^2.0.1
   video_player: ^2.8.3
   flick_video_player: ^0.7.0
+  uuid: ^4.3.2
 
 
 dev_dependencies:
