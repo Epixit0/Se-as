@@ -173,7 +173,6 @@ class DroppableAreaState extends State<DroppableArea> {
             acceptedWords.add(data);
             if (eq(acceptedWords, widget.answers)) {
               respuestas++;
-              print(respuestas);
             }
           });
           widget.onWordDropped(data);

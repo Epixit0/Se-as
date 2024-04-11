@@ -29,18 +29,18 @@ class _LoginScreenState extends State<LoginScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Recuperar Contraseña"),
+          title: const Text("Recuperar Contraseña"),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                const Text(
                     "Por favor, ingrese su correo electrónico para recuperar su contraseña."),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextFormField(
                   controller: emailController,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Correo Electrónico',
                     hintText: 'Ingrese su correo electrónico',
                   ),
@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 Navigator.of(context).pop(); // Cerrar el diálogo
               },
-              child: Text("Cancelar"),
+              child: const Text("Cancelar"),
             ),
             ElevatedButton(
               onPressed: () {
@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 _con.resetPassword(email);
                 Navigator.of(context).pop(); // Cerrar el diálogo
               },
-              child: Text("Enviar"),
+              child: const Text("Enviar"),
             ),
           ],
         );
@@ -75,15 +75,15 @@ class _LoginScreenState extends State<LoginScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Error"),
-          content: Text(
+          title: const Text("Error"),
+          content: const Text(
               "El correo que ingresó no existe. Por favor, regístrese con un correo válido."),
           actions: [
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Cerrar el diálogo
               },
-              child: Text("Aceptar"),
+              child: const Text("Aceptar"),
             ),
           ],
         );
@@ -205,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           _showForgotPasswordDialog(context);
                         },
-                        child: Text(
+                        child: const Text(
                           '¿Olvidaste tu contraseña?',
                           style: TextStyle(
                             color: Colors.lightBlue,

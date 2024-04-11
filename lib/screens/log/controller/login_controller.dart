@@ -72,7 +72,7 @@ class LoginController {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text(
               'Se ha enviado un correo electrónico para restablecer la contraseña.'),
         ),
